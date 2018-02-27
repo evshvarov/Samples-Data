@@ -5,7 +5,7 @@ Class Sample.Utils Extends %RegisteredObject
 
 /// Invoke this method to set up the data for these classes.
 /// Create one company for every five people.
-ClassMethod Generate(personCount As %Integer = 100)
+ClassMethod Generate(personCount As %Integer = 100,debug=0)
 {
     //make sure we always have at least 1 person
     If (personCount < 1) {
@@ -40,6 +40,10 @@ ClassMethod Generate(personCount As %Integer = 100)
 		         _" as a(n) "_##class(%PopulateUtils).Title()
 		         
 		do employee.Notes.Write(text)
+
+		if debug {
+			Write text,!
+		}
 		
 		//add a stock picture (yes, all these employees look alike)
 		do employee.Picture.Write($G(^EmployeePictures))
